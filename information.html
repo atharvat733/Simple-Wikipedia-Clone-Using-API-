@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wikipedia</title>
+    <link rel="stylesheet" href="search.css">
+    <link rel="icon" type="image/png" href="imgs/Capture-removebg-preview.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+     <!-- navigation bar start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom" style="width:100%; padding-left: 5px;">
+    <div class="container-fluid px-0">
+      <a class="navbar-brand me-auto" href="index1.php">Wikipedia</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon">
+        </span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="index1.php">Home</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="about-us.html">About</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- navigation bar end -->
+    <div id = "articles"></div>
+    <div class = "video-container" id = "videos" style="margin: 50px;"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+   $(document).ready(function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchTerm = urlParams.get("searchTerm");
+
+        if (searchTerm) {
+            // Make an AJAX request to Wikipedia API
+            $.ajax({
+                url: 'https://en.wikipedia.org/w/api.php',
+                data: {
+                    action: 'query',
+                    format: 'json',
+                    generator: 'search',
+                    gsrsearch: searchTerm,
+                    prop: 'extracts|pageimages',
+                    exintro: 1,
+                    explaintext: 1,
+                    exlimit: 15, // Increase the number of sentences returned
+                    piprop: 'thumbnail',
+                    pithumbsize: 300,
+                    origin: '*'
+                },
+                dataType: 'jsonp',
+                success: function(data) {
+                    $('#articles').empty(); // Clear previous search results
+                    if (data.query && data.query.pages) {
+                        $.each(data.query.pages, function(index, page) {
+                            // Display article title, snippet, and image
+                            var articleHTML = '<div class="article">';
+                            if (page.thumbnail) {
+                                articleHTML += '<img class="artimg" src="' + page.thumbnail.source + '" alt="' + page.title + '">';
+                            }
+                            articleHTML += '<h2>' + page.title + '</h2>';
+                            articleHTML += '<p>' + page.extract + '</p>';
+                            articleHTML += '</div>';
+                            $('#articles').append(articleHTML);
+                        });
+                    } else {
+                        $('#articles').html('<p>No articles found.</p>');
+                    }
+                    // Fetch YouTube videos related to the search term
+                    fetchVideos(searchTerm);
+                },
+                error: function() {
+                    $('#articles').html('<p>Error fetching articles. Please try again later.</p>');
+                }
+            });
+        }
+});
+
+function fetchVideos(searchTerm) {
+    $.ajax({
+        url: 'https://www.googleapis.com/youtube/v3/search',
+        data: {
+            part: 'snippet',
+            q: 'What is' +searchTerm , // Add 'tutorial' to search term for more educational videos
+            maxResults: 4, // Limit to 4 videos
+            type: 'video',
+            key: 'AIzaSyCUIZHsQHaeZ0yGp53AQJh31_u5E5vKJxw' //  YouTube API key
+        },
+        dataType: 'jsonp',
+        success: function(data) {
+            $('#videos').empty();
+            if (data.items) {
+                $.each(data.items, function(index, item) {
+                    var videoHTML = '<iframe src="https://www.youtube.com/embed/' + item.id.videoId + '" frameborder="0" allowfullscreen></iframe>';
+                    $('#videos').append(videoHTML);
+                });
+            } else {
+                $('#videos').html('<p>No videos found.</p>');
+            }
+        },
+        error: function() {
+            $('#videos').html('<p>Error fetching videos. Please try again later.</p>');
+        }
+    });
+}
+</script>
+<div class="home-footer">
+  <footer class="footerContainer home-footer1">
+    <div class="home-container31">
+      <span class="logo">WIKIPEDIA</span>
+      
+    </div>
+    <div class="home-separator"></div>
+    <div class="home-container32">
+      <span class="bodySmall home-text89">
+        © 2024 myCompany, All Rights Reserved.
+      </span>
+    </div>
+  </footer>
+</div>
+</div>
+</div>
+</body>
+</html>

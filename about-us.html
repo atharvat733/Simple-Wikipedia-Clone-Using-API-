@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Wikipedia</title>
+    <link rel="icon" type="image/png" href="Capture-removebg-preview.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom CSS */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            padding: 50px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .about-img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-description {
+            text-align: justify;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0069d9;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .about-img {
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .about-img {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom-2">
+        <div class="container">
+            <a class="navbar-brand" href="index1.php"><h3>Wikipedia</h3></a>
+        </div>
+    </nav>
+
+    <!-- About Us Section -->
+    <div class="container">
+        <div class="about-header">
+            <h2>About Us</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <img src="imgs/wiki-about.png" alt="About Us Image" class="about-img">
+            </div>
+            <div class="col-md-6">
+                <p class="about-description">
+                    Wikipedia is a <span class="highlight">free online encyclopedia</span>, created and edited by volunteers around the world and hosted by the Wikimedia Foundation. Our mission is to provide <span class="highlight">free, reliable, and neutral information</span> to everyone, everywhere. Wikipedia articles are written collaboratively by volunteers and cover a wide range of topics, including history, science, arts, technology, and much more.
+                </p>
+                <p class="about-description">
+                    Since its launch in 2001, Wikipedia has grown to become one of the largest and most popular reference websites on the internet, with millions of articles in multiple languages. We believe in the power of knowledge-sharing and the importance of open access to information for the betterment of society.
+                </p>
+                <p class="about-description">
+                    Wikipedia operates on a <span class="highlight">principle of neutrality</span>, aiming to present information from a neutral point of view and to provide citations or references for all information presented. This ensures that readers can verify the information provided and make informed judgments.
+                </p>
+                <p class="about-description">
+                    In addition to its main encyclopedia, Wikipedia also hosts other projects, including Wikimedia Commons (a repository of free media files) andWikidata (a structured database). These projects further contribute to the Wikimedia Foundation's mission of making knowledge freely available to everyone.
+                </p>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-auto py-3 bg-light">
+        <div class="container text-center">
+            <span class="text-muted">© 2024 Wikipedia. All rights reserved.</span>
+        </div>
+    </footer>
+
+</body>
+
+</html>
